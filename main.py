@@ -38,27 +38,36 @@ def fetch_image(description):
 
 # Use speech recognition to get user input
 def recognize_speech():
+
+    # import speech recognition library
     import speech_recognition as sr
     r = sr.Recognizer()
 
+    # use the imported library to listen the user voice
     with sr.Microphone() as source:
         print("Listening...")
+
+        # audio to listen to voice input of user 
         audio = r.listen(source)
 
+
+    # make a try catch of the audio input by the user 
     try:
         description = r.recognize_google(audio)
         print("Description:", description)
         fetch_image(description)
 
+    # if the audio input is not recognize by the system print the error 
     except sr.UnknownValueError:
         print("Speech recognition could not understand audio.")
         fallback_text = input("Please enter the text description: ")
         fetch_image(fallback_text)
 
+    # If the speech recoginition libabry is not working or not internet  print the error
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-# Example usage
+# call the function to start the program
 recognize_speech()
 
 # Close the database connection
