@@ -14,12 +14,16 @@ def fetch_image(description):
     cursor = db.cursor()
     # Make a querry to database
     query = "SELECT image_path, name,position,description FROM pic_tb WHERE description = %s OR name = %s OR position = %s OR country = %s"
+
+    # execute the querry and get the result
     cursor.execute(query, (description, description, description, description))
     result = cursor.fetchone()
 
     # Check if the querry contains the result data 
     if result:
+        
         image_path = result[0]
+        
         image = cv2.imread(image_path)
     
         print("User Search result : ", result)
