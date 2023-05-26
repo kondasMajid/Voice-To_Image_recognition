@@ -1,12 +1,12 @@
-import mysql.connector
-import cv2
+import mysql.connector # import mysql connector to connect to the database
+import cv2 # import cv2 library to read the image path
 
 # Establish a database connection
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="pic_db"
+    host="localhost", # host name of your database
+    user="root", # username of your database
+    password="", # password of your database
+    database="pic_db" # database name
 )
 
 # Function to fetch and display the image based on user input
@@ -21,21 +21,26 @@ def fetch_image(description):
 
     # Check if the querry contains the result data 
     if result:
-        
-        image_path = result[0]
-        
+
+        # get the image path from the result
+        image_path = result[0] 
+
+        # read the image path using cv2 library
         image = cv2.imread(image_path)
     
+        # print the result of the user search
         print("User Search result : ", result)
+
 
         # if cv2 libabry can read the image path and continue to show the image 
         if image is not None:
-            cv2.imshow("Image", image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            cv2.imshow("Image", image) # show the image
+            cv2.waitKey(0) # wait for the user input
+            cv2.destroyAllWindows() # close the image window
+
         else:
-            # if cv2 libary can't read the image path  print Failed 
-            print("Failed to load image.")
+            # if cv2 libary can't read the image path  the error message
+            print("Failed to load image.") 
             
     else:
         print("No image found for the given description.")
@@ -44,11 +49,15 @@ def fetch_image(description):
 def recognize_speech():
 
     # import speech recognition library
-    import speech_recognition as sr
-    r = sr.Recognizer()
+    import speech_recognition as sr 
+
+    # initialize the speech recognition library
+    r = sr.Recognizer() 
 
     # use the imported library to listen the user voice
     with sr.Microphone() as source:
+
+        # print the message to the user listen to the user voice
         print("Listening...")
 
         # audio to listen to voice input of user 
@@ -61,10 +70,15 @@ def recognize_speech():
         print("Description:", description)
         fetch_image(description)
 
-    # if the audio input is not recognize by the system print the error 
+   
+     # if the audio input is not recognize by the system print the error 
     except sr.UnknownValueError:
         print("Speech recognition could not understand audio.")
+
+        # and ask the user to enter the text description
         fallback_text = input("Please enter the text description: ")
+
+        # call the function to fetch the image based on the user input
         fetch_image(fallback_text)
 
     # If the speech recoginition libabry is not working or not internet  print the error
