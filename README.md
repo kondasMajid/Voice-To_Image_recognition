@@ -1,7 +1,6 @@
 # Voice To Speech Image Recognition
 
-A class work for Semester 7 computer graphics
-
+A class Project on Computer Graphics
 
 #Specification
 - Python System Installation
