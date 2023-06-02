@@ -1,6 +1,6 @@
 # Voice To Speech Image Recognition
 
-A class Project on Computer Graphics
+Project on Computer Graphics
 
 #Specification
 - Python System Installation
@@ -11,9 +11,12 @@ A class Project on Computer Graphics
 
 #   Summary 
 
-#   ................................................................
+#   .........................................
+    The application takes voice input and convvert to text.
+    The Text input is then send to the MySQL Database to find the corresponding input. 
 
-#  recognize_speech() 
+
+#  recognize_speech
 
 -   This code defines a function, recognize_speech(), which uses the speech_recognition library to listen for user voice input.
 
